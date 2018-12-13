@@ -1,7 +1,7 @@
 import { TestBed, async } from "@angular/core/testing";
 import { of } from "rxjs";
 
-import { UsersService } from "./users.service";
+import { UsersService, User } from "./users.service";
 
 describe("UsersService", () => {
   let usersService: UsersService; // Add this
@@ -38,6 +38,25 @@ describe("UsersService", () => {
       spyOn(usersService, "all").and.returnValue(of(userResponse));
 
       usersService.all().subscribe(res => {
+        response = res;
+      });
+
+      expect(response).toEqual(userResponse);
+    });
+  });
+
+  describe("fineOne", () => {
+    it("should return a single user", () => {
+      const userResponse = {
+        id: "2",
+        name: "Bob",
+        role: "Developer",
+        pokemon: "Charizard"
+      };
+      let response;
+      spyOn(usersService, "findOne").and.returnValue(of(userResponse));
+
+      usersService.findOne("2").subscribe((res: User) => {
         response = res;
       });
 

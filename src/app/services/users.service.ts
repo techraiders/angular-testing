@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
 
-interface User {
+export interface User {
   id: string,
   name: string,
   role: string,
@@ -41,5 +41,10 @@ export class UsersService {
 
   all () : Observable<Array<object>> {
     return of(this.users);
+  }
+
+  findOne (id:string) : Observable<User> {
+    const user = this.users.find((u: User) => u.id === id);
+    return of(user);
   }
 }
