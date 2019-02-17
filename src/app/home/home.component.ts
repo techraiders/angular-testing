@@ -8,14 +8,17 @@ import { Subscription } from "rxjs";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  users;
+  users: Array<User>;
   subscription: Subscription;
+  date: number;
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    this.subscription = this.usersService.all().subscribe(res => {
-      this.users = res;
-    });
+    this.subscription = this.usersService
+      .all()
+      .subscribe((res: Array<User>) => {
+        this.users = res;
+      });
   }
 
   ngOnDestroy() {

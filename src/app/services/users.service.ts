@@ -1,49 +1,38 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
+import * as faker from "faker";
 
 export interface User {
-  id: string,
-  name: string,
-  role: string,
-  pokemon: string
+  id: string;
+  name: string;
+  role: string;
+  pokemon: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UsersService {
-  users: Array<User> = [{
-    id: '1',
-    name: 'Jane',
-    role: 'Designer',
-    pokemon: 'Blastoise'
-  },
-  {
-    id: '2',
-    name: 'Bob',
-    role: 'Developer',
-    pokemon: 'Charizard'
-  },
-  {
-    id: '3',
-    name: 'Jim',
-    role: 'Developer',
-    pokemon: 'Venusaur'
-  },
-  {
-    id: '4',
-    name: 'Adam',
-    role: 'Designer',
-    pokemon: 'Yoshi'
-  }];
+  users: Array<User> = [];
 
-  constructor() { }
+  constructor() {
+    const { name } = faker;
 
-  all () : Observable<Array<object>> {
+    while (this.users.length < 4) {
+      this.users.push({
+        id: faker.random.alphaNumeric(7),
+        name: name.findName(),
+        role: name.jobTitle(),
+        pokemon: name.jobDescriptor()
+      });
+    }
+  }
+
+  all(): Observable<Array<object>> {
     return of(this.users);
   }
 
-  findOne (id:string) : Observable<User> {
+  findOne(id: string): Observable<User> {
     const user = this.users.find((u: User) => u.id === id);
     return of(user);
   }
