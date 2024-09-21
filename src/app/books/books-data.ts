@@ -1,5 +1,7 @@
 export const BOOKS = [
-  { id: 1, title: 'Book 1', author: 'Author 1' },
-  { id: 2, title: 'Book 2', author: 'Author 2' },
-  { id: 3, title: 'Book 3', author: 'Author 3' },
+  { id: 1, title: 'To Kill a Mockingbird', author: 'Harper Lee' },
+  { id: 2, title: '1984', author: 'George Orwell' },
+  { id: 3, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
+  { id: 4, title: 'The Catcher in the Rye', author: 'J.D. Salinger' },
+  { id: 5, title: 'Moby-Dick', author: 'Herman Melville' }
 ];

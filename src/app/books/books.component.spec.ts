@@ -2,6 +2,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BooksComponent } from './books.component';
+import { ActivatedRoute, provideRouter } from '@angular/router';
+import { ROUTES } from '../app.routes';
+import { BOOKS } from './books-data';
+
+class ActivatedRouteMock {
+  snapshot = {
+    data: {
+      books: BOOKS
+    }
+  };
+}
 
 describe('BooksComponent', () => {
   let component: BooksComponent;
@@ -10,6 +21,7 @@ describe('BooksComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FormsModule, CommonModule],
+      providers: [provideRouter(ROUTES), { provide: ActivatedRoute, useClass: ActivatedRouteMock }],
     }).compileComponents();
   });
 
@@ -24,7 +36,7 @@ describe('BooksComponent', () => {
   });
 
   it('should have a list of books', () => {
-    expect(component.books.length).toBe(3);
+    expect(component.books.length).toBe(BOOKS.length);
   });
 
   it('should edit a book', () => {
@@ -44,8 +56,9 @@ describe('BooksComponent', () => {
 
   it('should delete a book', () => {
     const book = component.books[0];
+    const length = component.books.length;
     component.deleteBook(book);
-    expect(component.books.length).toBe(2);
+    expect(component.books.length).toBe(length - 1);
     expect(component.books).not.toContain(book);
   });
 });

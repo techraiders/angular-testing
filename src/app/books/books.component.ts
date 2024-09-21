@@ -1,23 +1,29 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BOOKS } from './books-data';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
-interface Book {
+export interface Book {
   id: number;
   title: string;
   author: string;
 }
 
 @Component({
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   selector: 'app-books',
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css'],
   standalone: true
 })
-export class BooksComponent {
-  books: Book[] = BOOKS;
+export class BooksComponent implements OnInit {
+  books: Book[] = [];
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.books = this.route.snapshot.data['books'];
+  }
 
   editingBook: Book | null = null;
 
@@ -26,7 +32,7 @@ export class BooksComponent {
   }
 
   saveBook(book: Book): void {
-    const index = this.books.findIndex(b => b.title === book.title && b.author === book.author);
+    const index = this.books.findIndex(b => b.id === book.id);
     if (index !== -1) {
       this.books[index] = this.editingBook!;
       this.editingBook = null;
@@ -34,6 +40,6 @@ export class BooksComponent {
   }
 
   deleteBook(book: Book): void {
-    this.books = this.books.filter(b => b !== book);
+    this.books = this.books.filter(b => b.id !== book.id);
   }
 }
