@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { BooksResolver } from './books/books-resolver.service';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './auth/auth.guard';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: '/books', pathMatch: 'full' },
@@ -16,6 +16,6 @@ export const ROUTES: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./login/login.component').then((mod) => mod.LoginComponent) 
+      import('./auth/login/login.component').then((mod) => mod.LoginComponent) 
   }
 ];
