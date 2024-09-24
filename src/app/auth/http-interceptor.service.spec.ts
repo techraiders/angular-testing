@@ -2,9 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
-  provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { HeaderInterceptor } from './http-interceptor.service';
 
 describe('HeaderInterceptor', () => {
