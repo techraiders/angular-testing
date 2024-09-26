@@ -61,4 +61,9 @@ describe('BooksComponent', () => {
     expect(component.books.length).toBe(length - 1);
     expect(component.books).not.toContain(book);
   });
+  
+  it('should have a title "Books"', () => {
+    const title = fixture.nativeElement.querySelector('.title');
+    expect(title.textContent).toBe('Books');
+  });
 });

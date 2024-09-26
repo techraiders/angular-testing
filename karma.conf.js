@@ -42,7 +42,7 @@ module.exports = function (config) {
       }
     },
     reporters: ['kjhtml', 'spec'],
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
     restartOnFileChange: true
   });
 };

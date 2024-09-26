@@ -1,23 +1,28 @@
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of books">
-      <td *ngIf="!editingBook || item.id !== editingBook.id">{{ item.title }}</td>
-      <td *ngIf="editingBook && item.id === editingBook.id"> <input type="text" name="title" id="title" [(ngModel)]="editingBook.title"> </td>
-      
-      <td *ngIf="!editingBook || item.id !== editingBook.id">{{ item.author }}</td>
-      <td *ngIf="editingBook && item.id === editingBook.id"> <input type="text" name="author" id="author" [(ngModel)]="editingBook.author"> </td>
-      <td>
-        <button *ngIf="!editingBook || item.id !== editingBook.id" (click)="editBook(item)">Edit</button>
-        <button *ngIf="editingBook && item.id === editingBook.id" (click)="saveBook(item)">Save</button>
-        <button (click)="deleteBook(item)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<ng-container>
+  <header>
+    <h1 class="title">Books</h1>
+  </header>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of books">
+        <td *ngIf="!editingBook || item.id !== editingBook.id">{{ item.title }}</td>
+        <td *ngIf="editingBook && item.id === editingBook.id"> <input type="text" name="title" id="title" [(ngModel)]="editingBook.title"> </td>
+        
+        <td *ngIf="!editingBook || item.id !== editingBook.id">{{ item.author }}</td>
+        <td *ngIf="editingBook && item.id === editingBook.id"> <input type="text" name="author" id="author" [(ngModel)]="editingBook.author"> </td>
+        <td>
+          <button *ngIf="!editingBook || item.id !== editingBook.id" (click)="editBook(item)">Edit</button>
+          <button *ngIf="editingBook && item.id === editingBook.id" (click)="saveBook(item)">Save</button>
+          <button (click)="deleteBook(item)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
