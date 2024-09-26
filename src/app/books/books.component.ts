@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { BookFormComponent } from './book-form/book-form.component';
 
 export interface Book {
   id: number;
@@ -10,7 +11,7 @@ export interface Book {
 }
 
 @Component({
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule, BookFormComponent],
   selector: 'app-books',
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css'],

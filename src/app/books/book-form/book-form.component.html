@@ -1,0 +1,8 @@
+<ng-container>
+  <form [formGroup]="bookForm" (ngSubmit)="addBook()">
+    <input type="text" formControlName="title" placeholder="Title" />
+    <small *ngIf="bookForm.get('title')?.hasError('required')"> This field is required </small><br/>
+    <input type="text" formControlName="author" placeholder="Author" /> &nbsp;
+    <button type="submit">Add Book</button>
+  </form>
+</ng-container>
